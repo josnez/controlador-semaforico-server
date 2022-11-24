@@ -1,5 +1,7 @@
 package com.udistrital.controladorsemaforico.logica;
 
+import com.udistrital.controladorsemaforico.dtos.EstadoInterseccionDTO;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -12,12 +14,7 @@ public class Servidor {
     private Socket cliente;
     private int puerto;
     private boolean conectarActivo;
-
     private List<InterseccionHilo> intersecciones;
-
-    public List<InterseccionHilo> getIntersecciones() {
-        return intersecciones;
-    }
 
     public Servidor() {
         puerto = 5000;
@@ -60,5 +57,15 @@ public class Servidor {
             System.out.println("Error en la desconexion");
             throw new RuntimeException(e);
         }
+    }
+    public EstadoInterseccionDTO obtenerEstadoInterseccion(int id) {
+        // Todo
+        //InterseccionHilo interseccion = intersecciones.get(id);
+
+        return null;
+    }
+
+    public List<InterseccionHilo> getIntersecciones() {
+        return intersecciones;
     }
 }

@@ -19,9 +19,12 @@ public class ControladorWeb {
     private Modelo modelo;
 
     @RequestMapping(path = "gpr-semaforico", method = RequestMethod.GET)
-    public EstadoInterseccionDTO info(@RequestParam(required = true) Integer id) {
+    public EstadoInterseccionDTO infoInterseccion(@RequestParam(required = true) Integer id) {
         List array = new ArrayList<>();
         array.add(new Semaforo("" + modelo.getMiSistema().getIntersecciones().size(), "azul"));
+        // Todo
+        // EstadoInterseccionDTO resultado = modelo.obtenerEstadoInterseccion(id);
+        // return resultado;
         return new EstadoInterseccionDTO(array);
     }
 }

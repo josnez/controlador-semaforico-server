@@ -19,7 +19,11 @@ public class InterseccionHilo extends Thread {
     private ReadJSON readJSON;
     private ArrayList<ArrayList<int[]>> allCardsLeds;
     private ArrayList<String> infoCod;
-    private Map<Integer, String> intersecciones;
+    private static final Map<Integer, String> intersecciones = new HashMap<>() {{
+        put(0,"src/main/resources/static/datos/data13-41.json");
+        put(1,"src/main/resources/static/datos/data34-38.json");
+        put(2,"src/main/resources/static/datos/data80-43.json");
+    }};
     private String infoRutina;
     private boolean dano;
     private int idInterseccion;
@@ -27,16 +31,11 @@ public class InterseccionHilo extends Thread {
 
     public InterseccionHilo(Socket c) {
         host = c;
-        numIntersecciones++;
         idInterseccion = numIntersecciones;
+        numIntersecciones++;
         readJSON = new ReadJSON();
         allCardsLeds = new ArrayList<>();
         infoCod = new ArrayList<>();
-        intersecciones = new HashMap<>() {{
-            put(1,"src/main/resources/static/datos/data13-41.json");
-            put(2,"src/main/resources/static/datos/data34-38.json");
-            put(3,"src/main/resources/static/datos/data80-43.json");
-        }};
     }
 
     public String leerConfiguracion() {

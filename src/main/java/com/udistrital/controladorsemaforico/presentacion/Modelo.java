@@ -1,5 +1,6 @@
 package com.udistrital.controladorsemaforico.presentacion;
 
+import com.udistrital.controladorsemaforico.dtos.EstadoInterseccionDTO;
 import com.udistrital.controladorsemaforico.logica.Servidor;
 import org.springframework.stereotype.Component;
 
@@ -21,5 +22,9 @@ public class Modelo {
     public void iniciar() {
         System.out.println("Estableciendo conexión...");
         getMiSistema().conectar();
+    }
+
+    public EstadoInterseccionDTO obtenerEstadoInterseccion(int id) {
+        return getMiSistema().obtenerEstadoInterseccion(id);
     }
 }
