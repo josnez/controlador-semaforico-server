@@ -1,16 +1,11 @@
 package com.udistrital.controladorsemaforico.controlador;
 
-import com.udistrital.controladorsemaforico.dtos.EstadoInterseccionDTO;
 import com.udistrital.controladorsemaforico.dtos.Semaforo;
 import com.udistrital.controladorsemaforico.presentacion.Modelo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 public class ControladorWeb {
@@ -18,10 +13,33 @@ public class ControladorWeb {
     @Autowired
     private Modelo modelo;
 
-    @RequestMapping(path = "gpr-semaforico", method = RequestMethod.GET)
-    public EstadoInterseccionDTO info(@RequestParam(required = true) Integer id) {
-        List array = new ArrayList<>();
-        array.add(new Semaforo("" + modelo.getMiSistema().getIntersecciones().size(), "azul"));
-        return new EstadoInterseccionDTO(array);
+    @RequestMapping(path = "gpr-semaforico-todos", method = RequestMethod.GET)
+    @ResponseBody
+    public ArrayList<Semaforo> info() {
+
+        ArrayList array = new ArrayList<Semaforo>();
+        Semaforo semaforo1 = new Semaforo("Semaforo 1");
+        semaforo1.stringParser(modelo.getInterseccionEstado().getEstadoInterseccion1());
+        semaforo1.setTiempo(modelo.getInterseccionEstado().getTiempoInterseccion1());
+
+        Semaforo semaforo2 = new Semaforo("Semaforo 2");
+        semaforo2.stringParser(modelo.getInterseccionEstado().getEstadoInterseccion2());
+        semaforo2.setTiempo(modelo.getInterseccionEstado().getTiempoInterseccion2());
+
+        Semaforo semaforo3 = new Semaforo("Semaforo 3");
+        semaforo3.stringParser(modelo.getInterseccionEstado().getEstadoInterseccion3());
+        semaforo3.setTiempo(modelo.getInterseccionEstado().getTiempoInterseccion3());
+
+
+        array.add(semaforo1);
+        array.add(semaforo2);
+        array.add(semaforo3);
+
+        return array;
     }
+    @GetMapping("/gpr-semaforico")
+    public Semaforo getbyId (@RequestParam int id){
+        ArrayList<Semaforo> lista = info();
+        return lista.get(id);
+     }
 }

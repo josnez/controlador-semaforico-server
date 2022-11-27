@@ -14,7 +14,7 @@ import java.util.Map;
 public class InterseccionHilo extends Thread {
 
     private Socket host;
-    private DataOutputStream datosSalida;
+    public DataOutputStream datosSalida;
     private DataInputStream datosEntrada;
     private ReadJSON readJSON;
     private ArrayList<ArrayList<int[]>> allCardsLeds;
@@ -25,8 +25,11 @@ public class InterseccionHilo extends Thread {
     private int idInterseccion;
     public static int numIntersecciones = 0;
 
-    public InterseccionHilo(Socket c) {
+    private InterseccionEstado interseccionEstado;
+
+    public InterseccionHilo(Socket c, InterseccionEstado ie) {
         host = c;
+        interseccionEstado = ie;
         numIntersecciones++;
         idInterseccion = numIntersecciones;
         readJSON = new ReadJSON();
@@ -101,6 +104,7 @@ public class InterseccionHilo extends Thread {
         String cantLedsFuncionando;
         try {
             datosSalida.writeUTF(infoRutina);
+            interseccionEstado.setEstado(infoRutina, idInterseccion);
         } catch (IOException e) {
             System.out.println("Error en el envio de la rutina de conexion");
             throw new RuntimeException(e);
@@ -148,6 +152,7 @@ public class InterseccionHilo extends Thread {
         String cantLedsFuncionando;
         try {
             datosSalida.writeUTF(infoRutina);
+            interseccionEstado.setEstado(infoRutina, idInterseccion);
         } catch (IOException e) {
             System.out.println("Error en el envio de la rutina normal");
             throw new RuntimeException(e);
@@ -281,6 +286,10 @@ public class InterseccionHilo extends Thread {
         }
     }
 
+    public DataOutputStream getDatosSalida(){
+        return datosSalida;
+    }
+
     @Override
     public void run() {
         try {
@@ -302,6 +311,7 @@ public class InterseccionHilo extends Thread {
                 }
                 delay(mls);
                 seg++;
+                interseccionEstado.setTiempo(String.valueOf(seg), idInterseccion);
             }
 
             // Rutina normal
@@ -316,6 +326,7 @@ public class InterseccionHilo extends Thread {
                     }
                     delay(mls);
                     seg++;
+                    interseccionEstado.setTiempo(String.valueOf(seg), idInterseccion);
                 }
             }
 
