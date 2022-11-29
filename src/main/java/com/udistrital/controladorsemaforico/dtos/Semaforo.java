@@ -33,19 +33,19 @@ public class Semaforo {
 
         switch (colorcode){
             case "0001":
-                return "verde - #88c057";
+                return "verde";
             case "0010":
-                return "amarillo - #fdca66";
+                return "amarillo";
             case "0100":
-                return "rojo - #ed7161";
+                return "rojo";
             case "1001":
-                return "verde intermitente - #50782d";
+                return "verde-intermitente";
             case "1010":
                 return "amarillo-intermitente";
             case "1100":
                 return "rojo-intermitente";
             case "0110":
-                return "rojo-amarillo - #f59e63";
+                return "rojo-amarillo";
             default:
                 return "no-color";
         }
