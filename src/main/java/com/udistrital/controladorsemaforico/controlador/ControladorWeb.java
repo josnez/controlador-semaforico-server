@@ -21,15 +21,17 @@ public class ControladorWeb {
         Semaforo semaforo1 = new Semaforo("Semaforo 1");
         semaforo1.stringParser(modelo.getInterseccionEstado().getEstadoInterseccion1());
         semaforo1.setTiempo(modelo.getInterseccionEstado().getTiempoInterseccion1());
+        semaforo1.configParser(modelo.getInterseccionEstado().getConfigSemaforo1());
 
         Semaforo semaforo2 = new Semaforo("Semaforo 2");
         semaforo2.stringParser(modelo.getInterseccionEstado().getEstadoInterseccion2());
         semaforo2.setTiempo(modelo.getInterseccionEstado().getTiempoInterseccion2());
+        semaforo2.configParser(modelo.getInterseccionEstado().getConfigSemaforo2());
 
         Semaforo semaforo3 = new Semaforo("Semaforo 3");
         semaforo3.stringParser(modelo.getInterseccionEstado().getEstadoInterseccion3());
         semaforo3.setTiempo(modelo.getInterseccionEstado().getTiempoInterseccion3());
-
+        semaforo3.configParser(modelo.getInterseccionEstado().getConfigSemaforo3());
 
         array.add(semaforo1);
         array.add(semaforo2);

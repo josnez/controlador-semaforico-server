@@ -48,6 +48,7 @@ public class InterseccionHilo extends Thread {
         try {
             readJSON.readFile(intersecciones.get(idInterseccion));
             config = readJSON.getPrimerMensaje();
+            interseccionEstado.setConfiguracion(config, idInterseccion);
         } catch (Exception e) {
             e.printStackTrace();
         }

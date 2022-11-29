@@ -9,6 +9,8 @@ public class Semaforo {
     private ArrayList<String> color;
     private String tiempo;
 
+    private ArrayList<String> configuracion;
+
     public Semaforo(String nombre) {
         this.nombre = nombre;
     }
@@ -48,6 +50,29 @@ public class Semaforo {
                 return "no-color";
         }
     }
+
+    public void configParser(String data){
+        // byte recibido config-|d|d|-|d|d|
+        String[] datos = data.split("-");
+        ArrayList configs = new ArrayList<String>();
+        for (int i = 0; i < datos.length; i++) {
+            String tipo1 = datos[i].substring(0,1);
+            String tipo2 = datos[i].substring(1,2);
+            configs.add(getConfigName(tipo1));
+            configs.add(getConfigName(tipo2));
+        }
+
+        setConfiguracion(configs);
+    }
+
+    private String getConfigName(String data){
+        if(data.equals("0"))
+            return "peatonal";
+        if(data.equals("1"))
+            return "vehicular";
+        else
+            return "error";
+    }
     public String getNombre() {
         return nombre;
     }
@@ -70,5 +95,13 @@ public class Semaforo {
 
     public void setTiempo(String tiempo) {
         this.tiempo = tiempo;
+    }
+
+    public ArrayList<String> getConfiguracion() {
+        return configuracion;
+    }
+
+    public void setConfiguracion(ArrayList<String> configuracion) {
+        this.configuracion = configuracion;
     }
 }

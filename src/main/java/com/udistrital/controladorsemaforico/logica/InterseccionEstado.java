@@ -10,6 +10,10 @@ public class InterseccionEstado {
     private String tiempoInterseccion2 = "No se ha conectado";
     private String tiempoInterseccion3 = "No se ha conectado";
 
+    private String configSemaforo1 = "No se ha conectado";
+    private String configSemaforo2 = "No se ha conectado";
+    private String configSemaforo3 = "No se ha conectado";
+
     public void setEstado(String estado, int id) {
         if(id==1)
             this.estadoInterseccion1 = estado;
@@ -30,6 +34,14 @@ public class InterseccionEstado {
             this.tiempoInterseccion3 = tiempo;
     }
 
+    public void setConfiguracion(String config, int id) {
+        if(id==1)
+            this.configSemaforo1 = config;
+        if(id==2)
+            this.configSemaforo2 = config;
+        if(id==3)
+            this.configSemaforo3 = config;
+    }
     public String getEstado() {
         return estado;
     }
@@ -56,5 +68,17 @@ public class InterseccionEstado {
 
     public String getTiempoInterseccion3() {
         return tiempoInterseccion3;
+    }
+
+    public String getConfigSemaforo1() {
+        return configSemaforo1;
+    }
+
+    public String getConfigSemaforo2() {
+        return configSemaforo2;
+    }
+
+    public String getConfigSemaforo3() {
+        return configSemaforo3;
     }
 }
