@@ -34,10 +34,9 @@ public class InterseccionHilo extends Thread {
     public InterseccionHilo(Socket c, InterseccionEstado ie) {
         host = c;
         interseccionEstado = ie;
-        numIntersecciones++;
-
         idInterseccion = numIntersecciones;
         numIntersecciones++;
+
         readJSON = new ReadJSON();
         allCardsLeds = new ArrayList<>();
         infoCod = new ArrayList<>();
@@ -47,6 +46,7 @@ public class InterseccionHilo extends Thread {
         // Leer configuracion
         String config = "";
         try {
+            System.err.println(intersecciones.get(idInterseccion));
             readJSON.readFile(intersecciones.get(idInterseccion));
             config = readJSON.getPrimerMensaje();
             interseccionEstado.setConfiguracion(config, idInterseccion);

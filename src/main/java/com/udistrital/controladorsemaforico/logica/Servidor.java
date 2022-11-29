@@ -17,10 +17,6 @@ public class Servidor {
 
     private List<InterseccionHilo> intersecciones;
 
-    public List<InterseccionHilo> getIntersecciones() {
-        return intersecciones;
-    }
-
     public InterseccionEstado interseccionEstado;
 
     public Servidor() {
