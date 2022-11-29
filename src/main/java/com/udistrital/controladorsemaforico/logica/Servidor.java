@@ -14,12 +14,20 @@ public class Servidor {
     private Socket cliente;
     private int puerto;
     private boolean conectarActivo;
+
     private List<InterseccionHilo> intersecciones;
+
+    public List<InterseccionHilo> getIntersecciones() {
+        return intersecciones;
+    }
+
+    public InterseccionEstado interseccionEstado;
 
     public Servidor() {
         puerto = 5000;
         conectarActivo = true;
         intersecciones = new ArrayList<>();
+        interseccionEstado = new InterseccionEstado();
     }
 
     public void conectar() {
@@ -36,7 +44,8 @@ public class Servidor {
                         throw new RuntimeException(e);
                     }
                     // Alguien se conectó
-                    InterseccionHilo c = new InterseccionHilo(cliente);
+
+                    InterseccionHilo c = new InterseccionHilo(cliente, interseccionEstado);
                     intersecciones.add(c);
                     c.start();
                 }

@@ -1,6 +1,6 @@
 package com.udistrital.controladorsemaforico.presentacion;
 
-import com.udistrital.controladorsemaforico.dtos.EstadoInterseccionDTO;
+import com.udistrital.controladorsemaforico.logica.InterseccionEstado;
 import com.udistrital.controladorsemaforico.logica.Servidor;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +16,10 @@ public class Modelo {
             servidor = new Servidor();
         }
         return servidor;
+    }
+
+    public InterseccionEstado getInterseccionEstado(){
+        return servidor.interseccionEstado;
     }
 
     @PostConstruct
