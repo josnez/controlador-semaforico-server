@@ -27,4 +27,8 @@ public class Modelo {
         System.out.println("Estableciendo conexión...");
         getMiSistema().conectar();
     }
+
+    public EstadoInterseccionDTO obtenerEstadoInterseccion(int id) {
+        return getMiSistema().obtenerEstadoInterseccion(id);
+    }
 }

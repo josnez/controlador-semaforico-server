@@ -40,6 +40,7 @@ public class ControladorWeb {
 
         return array;
     }
+
     @GetMapping("/gpr-semaforico")
     public Semaforo getbyId (@RequestParam int id){
         ArrayList<Semaforo> lista = info();
